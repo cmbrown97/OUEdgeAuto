@@ -10,14 +10,17 @@ Collect data within the Particle Photon from the Carloop GPS and the Carloop Bas
 ## Hardware
 ### Carloop basic
 https://store.carloop.io/products/carloop-basic
+
 Retrieves CAN messages through a vehicles OBD2 port.
 
 ### Carloop GPS
 https://store.carloop.io/products/carloop-gps?variant=4846877966372
+
 Obtains GPS coordinates of the carloop in real-time.
 
 ### Particle Photon
 https://store.particle.io/products/photon
+
 Allows code to be added to it through the Particle IDE. Photon code controls gathering the CAN message and GPS data.
 
 ## Software
