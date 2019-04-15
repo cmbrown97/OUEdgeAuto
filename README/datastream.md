@@ -9,6 +9,9 @@
   
   The regular nodes will receive data in the form of "arb_id,message,latitude,longitude,cantime,session_id;". This data will be picked up from the socket and will typically contain more than one message. The ";" delimiter will denote an entry message sent to the node, whereas the delimiter "," denotes the different values of a message. All of this is then stored into the mySQL database.
   
+## Configuration
+  The carloop should be preprogrammed to connect to the mapping node. On the node that will be hosting the mapping functionality, run `php mapping.php`.
+  
 ## License
 
 There is none. If for some unlikely reason you want to use anything here, you can do so without my permission. I grant thee the privilege.
