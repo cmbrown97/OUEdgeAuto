@@ -2,15 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e89ae772-ec61-4f7c-8760-004b8005f814" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/README/carloop.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README/nodestream.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datastream/mapping.php" beforeDir="false" afterPath="$PROJECT_DIR$/datastream/mapping.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datastream/ouedgeauto.ino" beforeDir="false" afterPath="$PROJECT_DIR$/datastream/ouedgeauto.ino" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datastream/server.php" beforeDir="false" afterPath="$PROJECT_DIR$/datastream/server.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datastream/sql/locationcreator.sql" beforeDir="false" afterPath="$PROJECT_DIR$/datastream/sql/locationcreator.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datastream/sql/mapping.sql" beforeDir="false" afterPath="$PROJECT_DIR$/datastream/sql/mapping.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datastream/sql/node.sql" beforeDir="false" afterPath="$PROJECT_DIR$/datastream/sql/node.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datastream/sql/nodecreator.sql" beforeDir="false" afterPath="$PROJECT_DIR$/datastream/sql/nodecreator.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datastream/sql/updatelocations.sql" beforeDir="false" afterPath="$PROJECT_DIR$/datastream/sql/updatelocations.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README/chadwick.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README/datastream.md" beforeDir="false" afterPath="$PROJECT_DIR$/README/datastream.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README/web.md" beforeDir="false" afterPath="$PROJECT_DIR$/README/web.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carloop/ouedgeauto.ino" beforeDir="false" afterPath="$PROJECT_DIR$/carloop/ouedgeauto.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datastream/ouedgeauto.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodestream/VMInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/nodestream/VMInfo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodestream/datacenterSocket.php" beforeDir="false" afterPath="$PROJECT_DIR$/nodestream/datacenterSocket.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodestream/edgeautoSetup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/nodestream/edgeautoSetup.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodestream/nodeSocket.php" beforeDir="false" afterPath="$PROJECT_DIR$/nodestream/nodeSocket.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodestream/writeToDC.php" beforeDir="false" afterPath="$PROJECT_DIR$/nodestream/writeToDC.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,30 +25,9 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README/chadwick.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="510">
-                <caret line="27" selection-start-line="27" selection-end-line="27" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/datastream/server.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-877" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/datastream/ouedgeauto.ino">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2">
-              <caret line="66" selection-start-line="66" selection-end-line="66" />
-            </state>
           </provider>
         </entry>
       </file>
@@ -66,11 +49,21 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/datastream/mapping.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1560">
               <caret line="103" column="22" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README/nodestream.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -88,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/datastream/sql/updatenodes.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="3" column="45" lean-forward="true" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+              <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -201,15 +194,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555262597167</updated>
-      <workItem from="1555262598619" duration="3227000" />
+      <workItem from="1555262598619" duration="3383000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3227000" />
+    <option name="totallyTimeSpent" value="3383000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15912762" />
@@ -322,7 +316,7 @@
     <entry file="file://$PROJECT_DIR$/datastream/sql/updatenodes.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="3" column="45" lean-forward="true" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -358,6 +352,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1560">
           <caret line="103" column="22" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README/nodestream.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
         </state>
       </provider>
     </entry>
