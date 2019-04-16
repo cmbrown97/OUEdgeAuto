@@ -14,11 +14,7 @@ byte mappingServer[] = { 35, 237, 136, 160 };
 byte server[4] = {};
 String currentServer = "";
 bool mapped = false;
-int counter = 0;
-int xcounter = 0;
 int session_id = -1;
-String backlog[500];
-bool available = false;
 
 // Let's get this thing going!
 void setup() {
@@ -64,6 +60,9 @@ void setup() {
 
 // Keep going round and round.
 void loop() {
+    String errorMsg = "";
+    bool available = false;
+    int counter = 0;
     carloop.update();
     bool gpsValid = carloop.gps().location.isValid();
 
@@ -71,15 +70,13 @@ void loop() {
     if (gpsValid) {
         float lat = carloop.gps().location.lat();
         float lng = carloop.gps().location.lng();
+        String gps = "";
+        gps.concat(lat);
+        gps.concat(",");
+        gps.concat(lng);
 
         if (mapped) {
-            String gps = "";
             String package = "";
-
-            gps.concat(lat);
-            gps.concat(",");
-            gps.concat(lng);
-
             CANMessage message;
             String Canmessage = "";
 
@@ -92,6 +89,7 @@ void loop() {
                 package.concat(Canmessage);
                 package.concat(",");
             }
+
             package.concat(gps);
             package.concat(",");
             package.concat(millis());
@@ -101,61 +99,122 @@ void loop() {
 
             if (client.connected()) {
                 client.write(package);
-            } else {
-                while (!client.connected()) {
+                // If someone is talking to you, you might want to listen.
+                String temp = "";
+                String response = "";
+                counter = 0;
+                byte tempServer[4] = {};
+
+                while (client.available()) {
+                    char c = client.read();
+                    if (counter < 4) {
+                        if (c == '.') {
+                            unsigned int value = response.toInt();
+                            tempServer[counter] = value;
+                            temp.concat(response);
+                            temp.concat(".");
+                            response = "";
+                            counter++;
+                        } else if (c == ';') {
+                            unsigned int value = response.toInt();
+                            tempServer[counter] = value;
+                            temp.concat(response);
+                            counter++;
+                            if (counter == 4) {
+                                available = true;
+                            }
+                        } else {
+                            response.concat(c);
+                        }
+                    }
+                }
+
+                errorMsg.concat(currentServer);
+                errorMsg.concat(";");
+                errorMsg.concat(temp);
+
+                // If you have new information, go with it.
+                if (available && currentServer.compareTo(temp) != 0 && temp != "") {
+                    currentServer = temp;
+                    counter = 0;
+                    while (counter < 4) {
+                        server[counter] = tempServer[counter];
+                        counter++;
+                    }
+                    Particle.publish(errorMsg, PUBLIC);
+                    client.stop();
                     client.connect(server, 8001);
                 }
-                client.write(package);
-            }
-
-            // If someone is talking to you, you might want to listen.
-            String temp = "";
-            String response = "";
-            byte tempServer[4] = {};
-
-            while (client.available()) {
-                char c = client.read();
-                if (c == '.') {
-                    unsigned int value = response.toInt();
-                    tempServer[counter] = value;
-                    temp.concat(response);
-                    temp.concat(".");
-                    response = "";
-                    counter++;
-                } else if (c == ';') {
-                    unsigned int value = response.toInt();
-                    tempServer[counter] = value;
-                    temp.concat(response);
-                } else {
-                    response.concat(c);
+            } else {
+                int x = 0;
+                bool serverTest = false;
+                while (x < 10 && !client.connected()) {
+                    client.connect(server, 8001);
+                    x++;
                 }
-                available = true;
-            }
+                if (client.connected()) {
+                    // If someone is talking to you, you might want to listen.
+                    client.write(package);
+                    serverTest = true;
+                    String temp = "";
+                    String response = "";
+                    counter = 0;
+                    byte tempServer[4] = {};
 
-            // If you have new information, go with it.
-            if (available && currentServer.compareTo(temp) != 0) {
-                currentServer = temp;
-                counter = 0;
-                while (counter < 4) {
-                    server[counter] = tempServer[counter];
-                    counter++;
+                    while (client.available()) {
+                        char c = client.read();
+                        if (counter < 4) {
+                            if (c == '.') {
+                                unsigned int value = response.toInt();
+                                tempServer[counter] = value;
+                                temp.concat(response);
+                                temp.concat(".");
+                                response = "";
+                                counter++;
+                            } else if (c == ';') {
+                                unsigned int value = response.toInt();
+                                tempServer[counter] = value;
+                                temp.concat(response);
+                                counter++;
+                                if (counter == 4) {
+                                    available = true;
+                                }
+                            } else {
+                                response.concat(c);
+                            }
+                        }
+                    }
+
+                    errorMsg.concat(currentServer);
+                    errorMsg.concat(";");
+                    errorMsg.concat(temp);
+
+                    // If you have new information, go with it.
+                    if (available && currentServer.compareTo(temp) != 0 && temp != "") {
+                        currentServer = temp;
+                        counter = 0;
+                        while (counter < 4) {
+                            server[counter] = tempServer[counter];
+                            counter++;
+                        }
+                        Particle.publish(errorMsg, PUBLIC);
+                        client.stop();
+                        client.connect(server, 8001);
+                    }
                 }
-                Particle.publish("WHY THE FUCK YOU COME HERE YOU INBRED", PUBLIC);
-                client.stop();
-                client.connect(server, 8001);
-                available = false;
+                if (!serverTest) {
+                    while (!client.connected()) {
+                        client.connect(mappingServer, 8001);
+                    }
+                    mapped = false;
+                    currentServer = "";
+                }
             }
         } else {
             // If the carloop hasn't been mapped, gather your documentation and figure out where you go.
             // Collect the gps data.
-            String gps = "";
-            gps.concat(lat);
-            gps.concat(",");
-            gps.concat(lng);
             gps.concat(";");
-
             client.write(gps);
-
             String response = "";
             counter = 0;
 
@@ -170,7 +229,7 @@ void loop() {
                     unsigned int value = response.toInt();
                     server[counter] = value;
                     currentServer.concat(response);
-                    currentServer.concat(response);
+                    currentServer.concat(".");
                     response = "";
                     counter++;
                 } else if (c == ';') {
@@ -192,5 +251,5 @@ void loop() {
         Particle.publish("INVALID~GPS", PUBLIC);
         delay(1000);
     }
-    xcounter++;
+    delay(10);
 }

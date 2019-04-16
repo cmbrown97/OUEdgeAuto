@@ -1,8 +1,3 @@
--- This creates the user object, this does nothing really but helps with testing
-/*create table user (
-user_id int unsigned auto_increment primary key
-);*/
-
 -- This is where the actual CANbus message will be stored on the edge nodes
 create table message (
 message_id int unsigned auto_increment primary key,

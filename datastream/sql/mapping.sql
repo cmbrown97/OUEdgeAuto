@@ -1,5 +1,7 @@
+-- This is auto-assigned to each session so we can differentiate trips amongst one another.
 create table session (
-session_id int unsigned auto_increment primary key
+session_id int unsigned auto_increment primary key,
+created datetime default CURRENT_TIMESTAMP
 );
 
 -- This is the normalized gps boundaries for a vm, this is what vm is referencing
